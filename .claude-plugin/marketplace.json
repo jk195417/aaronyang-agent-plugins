@@ -1,0 +1,14 @@
+{
+  "name": "aaronyang-agent-plugins",
+  "description": "Aaron Yang's agent plugins for Claude Code and GitHub Copilot",
+  "owner": {
+    "name": "Aaron Yang"
+  },
+  "plugins": [
+    {
+      "name": "aaronyang-playbook",
+      "source": "./plugins/aaronyang-playbook",
+      "description": "Working principles and skills: lean agent rules, plain-language explanations, knowledge-base notes"
+    }
+  ]
+}
