@@ -16,8 +16,6 @@ Shared, always-on principles. Import this file from your own instruction file (e
 ## Writing rules and memories
 
 - Less is more: keep only what changes behavior.
-- State what to do, not a growing list of don'ts.
-- Write the principle, not examples or numbers that drift.
-- Name known concepts instead of explaining them; state only the delta.
 - Pointers, not copies: record where knowledge lives (single source of truth) and load details on demand.
+- Before writing or editing rules, memories, or skills, follow the aaronyang-writing-rules skill (writing-rules plugin).
 - In notes and articles, cite sources as a numbered References section with [n] markers in the text.
