@@ -16,6 +16,10 @@ Aaron Yang 的 agent plugin。一個 marketplace，Claude Code 和 GitHub Copilo
 
 Skill 名稱都加上 `aaronyang-` 前綴，因為個人 skill 資料夾、claude.ai、Copilot 不會替 skill 加命名空間，同名的 skill 可能互相覆蓋。
 
+## Roadmap
+
+規劃中的 plugin 記在[標了 `roadmap` 的 issue](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap)，第一個是 orchestrating plugin。
+
 ## 安裝
 
 ### Claude Code

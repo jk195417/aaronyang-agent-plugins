@@ -16,6 +16,10 @@ Install only what you need; each plugin works on its own. `knowledge-notes` uses
 
 Skill names carry the `aaronyang-` prefix because personal skill folders, claude.ai, and Copilot do not namespace skills, and two skills with the same name can shadow each other.
 
+## Roadmap
+
+Planned plugins are tracked as [issues labeled `roadmap`](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap), starting with an orchestrating plugin.
+
 ## Install
 
 ### Claude Code
