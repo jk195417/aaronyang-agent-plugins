@@ -27,6 +27,8 @@ description: Write, review, or relocate agent instructions — CLAUDE.md, AGENTS
 
 Scope follows audience: personal (user level), team (repo level, shared through git), wider (plugin through a marketplace).
 
+When a plugin's content changes, bump its `version` in `plugin.json`: installs are pinned to the version, so an unchanged version never reaches people who already installed it. Once a skill ships in a plugin, remove any local copy of it (single source of truth).
+
 ## Process
 
 1. Name the behavior gap: what goes wrong today without the rule? No gap, no rule.
