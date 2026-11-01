@@ -73,4 +73,4 @@ for p in plugins/*; do claude plugin validate "$p"; done
 
 ## License
 
-[GNU LGPL v3.0 or later](COPYING.LESSER) (the LGPL builds on the [GNU GPL v3.0](COPYING)).
+[CC BY-SA 4.0](LICENSE) © Aaron Yang. Use, share, and adapt freely, including commercially: credit Aaron Yang and share adaptations under the same license.

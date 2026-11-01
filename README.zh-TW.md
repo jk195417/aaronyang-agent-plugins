@@ -73,4 +73,4 @@ for p in plugins/*; do claude plugin validate "$p"; done
 
 ## 授權
 
-[GNU LGPL v3.0 或更新版本](COPYING.LESSER)（LGPL 以 [GNU GPL v3.0](COPYING) 為基礎）。
+[CC BY-SA 4.0](LICENSE) © Aaron Yang。可以自由使用、分享、改作，包括商用；條件是標出作者 Aaron Yang，改作也要用相同授權分享。
