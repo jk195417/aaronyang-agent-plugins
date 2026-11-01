@@ -1,5 +1,7 @@
 # aaronyang-agent-plugins
 
+English | [繁體中文](README.zh-TW.md)
+
 Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Copilot can install from.
 
 ## Plugins
@@ -64,3 +66,7 @@ Keep personal settings (knowledge-base location, communication habits, folder co
 claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
+
+## License
+
+[GNU LGPL v3.0 or later](COPYING.LESSER) (the LGPL builds on the [GNU GPL v3.0](COPYING)).
