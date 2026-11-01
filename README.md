@@ -1,66 +1,66 @@
 # aaronyang-agent-plugins
 
-Aaron Yang 的 agent plugin marketplace，Claude Code 和 GitHub Copilot 都能安裝。
+Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Copilot can install from.
 
-## 內容
+## Plugins
 
-| Plugin | 內容 |
-|---|---|
-| `aaronyang-playbook` | 共用工作原則（`principles.md`）＋ 三個 skill |
+| Plugin | Skill | What it does |
+|---|---|---|
+| `writing-rules` | `aaronyang-writing-rules` | Write lean agent instructions that change behavior, decide where each rule belongs, verify rules with evals |
+| `plain-explain` | `aaronyang-plain-explain` | Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references |
+| `knowledge-notes` | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
 
-| Skill | 用途 |
-|---|---|
-| `aaronyang-writing-rules` | 寫出精簡、真正改變行為的 agent 規則；判斷規則該放哪裡；用 evals 驗證 |
-| `aaronyang-plain-explain` | 用「專有名詞＋白話解釋＋生活比喻＋編號 References」把知識講清楚 |
-| `aaronyang-knowledge-notes` | 把知識 ingest 進自己的知識庫，照各自現有的架構寫 |
+Install only what you need; each plugin works on its own. `knowledge-notes` uses `plain-explain` when it is installed and falls back to a built-in format when it is not.
 
-Skill 一律加 `aaronyang-` 前綴，避免在沒有命名空間的地方（個人 skill、claude.ai、Copilot）撞名。
+Skill names carry the `aaronyang-` prefix because personal skill folders, claude.ai, and Copilot do not namespace skills, and two skills with the same name can shadow each other.
 
-## 安裝
+## Install
 
 ### Claude Code
 
 ```bash
 claude plugin marketplace add jk195417/aaronyang-agent-plugins
-claude plugin install aaronyang-playbook@aaronyang-agent-plugins
+claude plugin install writing-rules@aaronyang-agent-plugins
+claude plugin install plain-explain@aaronyang-agent-plugins
+claude plugin install knowledge-notes@aaronyang-agent-plugins
 ```
 
 ### GitHub Copilot CLI
 
-Copilot CLI 也會讀 `.claude-plugin/marketplace.json`。
+Copilot CLI also reads `.claude-plugin/marketplace.json`.
 
 ```bash
 copilot plugin marketplace add jk195417/aaronyang-agent-plugins
-copilot plugin install aaronyang-playbook@aaronyang-agent-plugins
+copilot plugin install writing-rules@aaronyang-agent-plugins
 ```
 
-### VS Code（Copilot agent plugins，預覽功能）
+### VS Code (Copilot agent plugins, preview)
 
-在 `settings.json` 的 `chat.plugins.marketplaces` 加入 `jk195417/aaronyang-agent-plugins`，再從 Extensions 的 Agent Plugins 安裝。
+Add `jk195417/aaronyang-agent-plugins` to `chat.plugins.marketplaces` in `settings.json`, then install from Extensions → Agent Plugins.
 
 ### claude.ai
 
-把 `plugins/aaronyang-playbook/skills/` 底下的 skill 資料夾壓縮後，上傳到 claude.ai 的 skills。
+Zip a skill folder under `plugins/<plugin>/skills/` and upload it in claude.ai's skills settings.
 
-## 共用工作原則
+## Shared principles
 
-Plugin 不會自動載入常駐指令，所以 `principles.md` 要自己匯入。先 clone 這個 repo：
+Plugins do not load always-on instructions, so `principles.md` is imported separately. Clone the repo:
 
 ```bash
 git clone https://github.com/jk195417/aaronyang-agent-plugins ~/code/aaronyang-agent-plugins
 ```
 
-再在自己的 `~/.claude/CLAUDE.md` 加一行：
+Then add one line to your `~/.claude/CLAUDE.md`:
 
 ```markdown
-@~/code/aaronyang-agent-plugins/plugins/aaronyang-playbook/principles.md
+@~/code/aaronyang-agent-plugins/principles.md
 ```
 
-個人的設定（知識庫位置、溝通習慣、資料夾慣例）留在自己的檔案；共用的方法放這裡，改一處大家都更新。
+Keep personal settings (knowledge-base location, communication habits, folder conventions) in your own file. The shared method lives here, so one edit updates everyone.
 
-## 開發
+## Develop
 
 ```bash
 claude plugin validate .
-claude plugin validate ./plugins/aaronyang-playbook
+for p in plugins/*; do claude plugin validate "$p"; done
 ```

@@ -1,0 +1,10 @@
+{
+  "name": "knowledge-notes",
+  "version": "0.2.0",
+  "description": "Ingest knowledge into your own knowledge base by following its existing structure",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "keywords": ["knowledge-management", "notion", "notes", "ingest"]
+}

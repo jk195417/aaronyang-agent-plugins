@@ -14,6 +14,6 @@ The method is shared; each user's knowledge base keeps its own structure. Learn 
 3. **Search before writing** — when a note on the topic exists, update it (single source of truth); create a new note only for a new concept.
 4. **One concept per note** — split a mixed source into several notes (Zettelkasten).
 5. **Link** — connect each note to related notes and to an index page (MOC), using the knowledge base's own link or relation fields.
-6. **Write** — follow the house style found in step 2. Without one: a one-line summary first, layered bullets and tables, terms with plain explanations (see the aaronyang-plain-explain skill), and a numbered References section.
+6. **Write** — follow the house style found in step 2. Without one, use the aaronyang-plain-explain skill when it is available; otherwise: a one-line summary first, layered bullets and tables, each term with a plain explanation, and a numbered References section.
 7. **Mark provenance** — note which content is unverified or comes from model knowledge.
 8. **Report** — list each note created or updated, with links. Ask before rewriting a large part of an existing note.

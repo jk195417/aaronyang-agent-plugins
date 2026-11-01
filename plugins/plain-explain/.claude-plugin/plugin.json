@@ -1,0 +1,10 @@
+{
+  "name": "plain-explain",
+  "version": "0.2.0",
+  "description": "Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "keywords": ["explanation", "teaching", "writing"]
+}

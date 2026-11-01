@@ -6,9 +6,19 @@
   },
   "plugins": [
     {
-      "name": "aaronyang-playbook",
-      "source": "./plugins/aaronyang-playbook",
-      "description": "Working principles and skills: lean agent rules, plain-language explanations, knowledge-base notes"
+      "name": "writing-rules",
+      "source": "./plugins/writing-rules",
+      "description": "Write lean agent instructions that change behavior, place each rule where it belongs, and verify rules with evals"
+    },
+    {
+      "name": "plain-explain",
+      "source": "./plugins/plain-explain",
+      "description": "Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references"
+    },
+    {
+      "name": "knowledge-notes",
+      "source": "./plugins/knowledge-notes",
+      "description": "Ingest knowledge into your own knowledge base by following its existing structure"
     }
   ]
 }
