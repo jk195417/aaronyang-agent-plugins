@@ -1,7 +1,7 @@
 ---
 name: aaronyang-file-archiving
 description: File, rename, deduplicate and clean up personal files — a cloud drive, the Downloads folder, scans, receipts, statements — safely and consistently. Use when the user asks to organize or archive files, clear out Downloads, decide where a file belongs, keep yearly records, or build an index of archived documents.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 ---
 
 # File archiving

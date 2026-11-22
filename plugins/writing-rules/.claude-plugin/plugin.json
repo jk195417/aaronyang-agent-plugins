@@ -1,11 +1,11 @@
 {
   "name": "writing-rules",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Write lean agent instructions that change behavior, place each rule where it belongs, and verify rules with evals",
   "author": {
     "name": "Aaron Yang"
   },
   "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
-  "license": "CC-BY-SA-4.0",
+  "license": "Apache-2.0",
   "keywords": ["agent-rules", "claude-md", "agents-md", "evals"]
 }

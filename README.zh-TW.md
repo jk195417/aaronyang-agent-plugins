@@ -93,4 +93,4 @@ claude plugin install <plugin>@aaronyang-agent-plugins   # 每個新的 plugin
 
 ## 授權
 
-[CC BY-SA 4.0](LICENSE) © Aaron Yang。可以自由使用、分享、改作，包括商用；條件是標出作者 Aaron Yang，改作也要用相同授權分享。
+[Apache License 2.0](LICENSE) © Aaron Yang。可以自由使用、修改、分享，包括商用；條件是保留版權與授權聲明，並註明改過的檔案。在這次變更之前的版本以 CC BY-SA 4.0 釋出。

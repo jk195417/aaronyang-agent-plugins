@@ -1,7 +1,7 @@
 ---
 name: aaronyang-gmail-pdf-archive
 description: Download PDF attachments (bank and card statements, bills, receipts, invoices) from chosen Gmail senders, decrypt password-protected ones, and archive them by month with a manifest. Use when the user wants statements or receipts collected from Gmail, a new sender added to the archive, a month backfilled, or a list of what has been archived.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 compatibility: Needs uv and a Google Cloud OAuth client (Desktop app) with the Gmail API enabled.
 ---
 
