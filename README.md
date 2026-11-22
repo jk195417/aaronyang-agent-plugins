@@ -44,6 +44,10 @@ copilot plugin install writing-rules@aaronyang-agent-plugins
 
 Add `jk195417/aaronyang-agent-plugins` to `chat.plugins.marketplaces` in `settings.json`, then install from Extensions → Agent Plugins.
 
+### Other Agent Plugins clients (Codex, Cursor, and others)
+
+Each plugin folder also has a root `plugin.json` that follows [Agent Plugins 1.0](https://agent-plugins.org/specification). Install a plugin folder (`plugins/<plugin>`) the way your client installs Agent Plugins. Skills follow the [Agent Skills](https://agentskills.io/specification) format, so clients that only read skills can use the folders under `plugins/<plugin>/skills/` directly.
+
 ### claude.ai
 
 Zip a skill folder under `plugins/<plugin>/skills/` and upload it in claude.ai's skills settings.
@@ -66,7 +70,11 @@ Keep personal settings (knowledge-base location, communication habits, folder co
 
 ## Develop
 
+`plugins/<plugin>/.claude-plugin/plugin.json` is the source of truth. The root `plugin.json` is generated from it, so edit only the Claude Code manifest, then run the sync script. It also checks marketplace descriptions and skill names.
+
 ```bash
+uv run tools/sync_manifests.py          # regenerate, then check
+uv run tools/sync_manifests.py --check  # check only; exits 1 on any problem
 claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
