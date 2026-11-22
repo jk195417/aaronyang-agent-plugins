@@ -187,11 +187,18 @@ class Site:
         b.ensure_browser()
         self.ctx = pw.chromium.connect_over_cdp(b.CDP_URL).contexts[0]
         self.page = b.wait_for_login(self.ctx)
+        self._require_english()
         self.page.set_default_timeout(TIMEOUT_MS)
         self.captured: list[str] = []
         self.ctx.route(DL_PATTERN, self._capture)
         self._hb = None
         self._hc = None
+
+    def _require_english(self):
+        # 選擇器、日期格式和下載記錄的鍵值都依賴英文介面；其他語言會讓各階段逾時，
+        # 或把已下載的文件當成新檔。
+        if re.search(r"[^\x00-\x7f]", self.page.title()):
+            raise SystemExit("網站介面不是英文：請在 Edge 視窗的 Profile 設定把語言改成 English 再重跑。")
 
     def _capture(self, route):
         # 只取網址，改由 session 直接 GET。不能 abort：網站是讓 iframe 導向此網址，
