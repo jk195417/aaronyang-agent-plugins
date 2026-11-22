@@ -12,6 +12,7 @@ Aaron Yang 的 agent plugin。一個 marketplace，Claude Code 和 GitHub Copilo
 | `plain-explain` | `aaronyang-plain-explain` | 把知識講給外行人聽懂：專有名詞、白話解釋、生活比喻、編號 References |
 | `gmail-tools` | `aaronyang-gmail-pdf-archive`、`aaronyang-gmail-filters`、`aaronyang-gmail-triage` | 從 Gmail 依月份歸檔對帳單、收據 PDF；用 TOML 檔管理 Gmail 篩選器（lint、套用到舊信、事後抽查）；巡檢收件匣。個人設定與資料放在 plugin 以外的 home 資料夾 |
 | `file-archiving` | `aaronyang-file-archiving` | 安全地歸檔個人文件：PARA 結構、比對雜湊再搬移、原始證據只增不改、年度資料夾、以 manifest 為正本。自己的資料夾地圖寫在該資料夾的 AGENTS.md |
+| `orchestrating` | `aaronyang-orchestrating` | 安排長時間的 agent 工作：一個 session 一個目標、判斷在這裡做或交給 subagent 或另開 session、岔題時保留可見的 stack、附來源標記的交接、session 收尾 |
 | `knowledge-notes` | `aaronyang-knowledge-notes` | 把知識 ingest 進自己的知識庫，照各自現有的架構寫 |
 
 需要哪個裝哪個，每個都能單獨使用。`knowledge-notes` 有裝 `plain-explain` 時會用它的格式，沒裝就用內建的精簡格式。

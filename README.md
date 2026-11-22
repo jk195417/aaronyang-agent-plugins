@@ -12,6 +12,7 @@ Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Cop
 | `plain-explain` | `aaronyang-plain-explain` | Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references |
 | `gmail-tools` | `aaronyang-gmail-pdf-archive`, `aaronyang-gmail-filters`, `aaronyang-gmail-triage` | Archive statement and receipt PDFs from Gmail by month; manage Gmail filters from a TOML file with lint, backfill and audit; triage the inbox. Personal settings and data stay in a home folder outside the plugin |
 | `file-archiving` | `aaronyang-file-archiving` | File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests. Your own folder map stays in that folder's AGENTS.md |
+| `orchestrating` | `aaronyang-orchestrating` | Shape long agent work: one goal per session, here vs. subagent vs. separate session, a visible detour stack, handoff briefs with provenance, and session close-out |
 | `knowledge-notes` | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
 
 Install only what you need; each plugin works on its own. `knowledge-notes` uses `plain-explain` when it is installed and falls back to a built-in format when it is not.
