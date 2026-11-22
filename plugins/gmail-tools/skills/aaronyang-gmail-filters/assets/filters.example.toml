@@ -1,0 +1,21 @@
+# Gmail filters, source of truth for gmail_filters.py. Copy to <home>/filters.toml,
+# or create it from your current filters with: uv run scripts/gmail_filters.py export
+
+[[rules]]
+name = "Bank A card statements"
+from = "statements@bank-a.example"
+subject = "credit card statement"
+label = "Banks"
+
+[[rules]]
+name = "Shop receipts"
+from = "orders@shop.example"
+subject = "receipt OR invoice"
+label = "Billing/Receipts"
+archive = true
+
+[[rules]]
+name = "Newsletter"
+query = "list:news.example"
+label = "Newsletters"
+archive = true
