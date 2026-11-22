@@ -12,7 +12,8 @@ Derived:            plugins/<name>/plugin.json (https://agent-plugins.org)
 
 Checks: derived manifests are up to date and valid against the Agent Plugins schema,
 every plugin is listed in .claude-plugin/marketplace.json with the same description,
-and every SKILL.md follows the Agent Skills naming rules (https://agentskills.io/specification).
+every SKILL.md follows the Agent Skills naming rules (https://agentskills.io/specification),
+and helper scripts copied into several skills of one plugin are identical.
 """
 
 import argparse
@@ -114,6 +115,15 @@ def main() -> int:
             problems.append(f"{name}: not listed in marketplace.json")
         elif entry.get("description") != claude.get("description"):
             problems.append(f"{name}: marketplace.json description differs from plugin.json")
+
+        # Skills must stay self-contained, so shared helpers are copied into each skill;
+        # files with the same name under skills/*/scripts/ must stay identical.
+        copies: dict[str, list[Path]] = {}
+        for script in plugin_dir.glob("skills/*/scripts/*.py"):
+            copies.setdefault(script.name, []).append(script)
+        for file_name, paths in copies.items():
+            if len({p.read_bytes() for p in paths}) > 1:
+                problems.append(f"{name}: copies of scripts/{file_name} differ between skills")
 
         for skill_md in sorted(plugin_dir.glob("skills/*/SKILL.md")):
             folder = skill_md.parent.name

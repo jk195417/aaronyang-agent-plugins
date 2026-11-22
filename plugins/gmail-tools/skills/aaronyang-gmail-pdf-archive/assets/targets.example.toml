@@ -1,0 +1,24 @@
+# Copy this file to targets.toml and edit it. targets.toml is not committed.
+#
+# name      Used in file names. No spaces or underscores.
+# from      Sender address.
+# subject   Optional. Only match emails with this phrase in the subject.
+# password  Optional. KEY reads the password from PDF_PASSWORD_KEY in .env.
+#           Use a list, such as ["NEW", "OLD"], to try several in order.
+#           Leave it out for PDFs without a password.
+
+[[targets]]
+name = "bank-a-card"
+from = "statements@bank-a.example"
+subject = "credit card statement"
+password = "CARD"
+
+[[targets]]
+name = "bank-a-account"
+from = "statements@bank-a.example"
+subject = "account statement"
+password = "ID"
+
+[[targets]]
+name = "utility-bill"
+from = "billing@utility.example"

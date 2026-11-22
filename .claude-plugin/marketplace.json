@@ -19,6 +19,11 @@
       "name": "knowledge-notes",
       "source": "./plugins/knowledge-notes",
       "description": "Ingest knowledge into your own knowledge base by following its existing structure"
+    },
+    {
+      "name": "gmail-tools",
+      "source": "./plugins/gmail-tools",
+      "description": "Gmail as code: archive statement and receipt PDFs by month, manage filters from a TOML file with lint and backfill, and triage the inbox"
     }
   ]
 }

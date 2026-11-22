@@ -10,6 +10,7 @@ Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Cop
 |---|---|---|
 | `writing-rules` | `aaronyang-writing-rules` | Write lean agent instructions that change behavior, decide where each rule belongs, verify rules with evals |
 | `plain-explain` | `aaronyang-plain-explain` | Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references |
+| `gmail-tools` | `aaronyang-gmail-pdf-archive`, `aaronyang-gmail-filters`, `aaronyang-gmail-triage` | Archive statement and receipt PDFs from Gmail by month; manage Gmail filters from a TOML file with lint, backfill and audit; triage the inbox. Personal settings and data stay in a home folder outside the plugin |
 | `knowledge-notes` | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
 
 Install only what you need; each plugin works on its own. `knowledge-notes` uses `plain-explain` when it is installed and falls back to a built-in format when it is not.
@@ -75,6 +76,7 @@ Keep personal settings (knowledge-base location, communication habits, folder co
 ```bash
 uv run tools/sync_manifests.py          # regenerate, then check
 uv run tools/sync_manifests.py --check  # check only; exits 1 on any problem
+uv run tests/test_gmail_filters.py      # offline tests for gmail-tools
 claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
