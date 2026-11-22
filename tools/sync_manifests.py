@@ -13,7 +13,8 @@ Derived:            plugins/<name>/plugin.json (https://agent-plugins.org)
 Checks: derived manifests are up to date and valid against the Agent Plugins schema,
 every plugin is listed in .claude-plugin/marketplace.json with the same description,
 every SKILL.md follows the Agent Skills naming rules (https://agentskills.io/specification),
-and helper scripts copied into several skills of one plugin are identical.
+helper scripts copied into several skills of one plugin are identical,
+and every plugin and skill declares the repository license.
 """
 
 import argparse
@@ -27,6 +28,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PLUGINS = ROOT / "plugins"
 MARKETPLACE = ROOT / ".claude-plugin" / "marketplace.json"
 SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
+REPO_LICENSE = "Apache-2.0"  # SPDX id of LICENSE; every plugin and skill must declare it
 # Keys Agent Plugins 1.0 allows besides $schema; Claude-only keys are dropped.
 PORTABLE_KEYS = ["name", "version", "description", "author", "homepage", "repository", "license", "keywords"]
 AUTHOR_KEYS = ["name", "email", "url"]
@@ -94,6 +96,8 @@ def main() -> int:
             continue
         claude = json.loads(source.read_text(encoding="utf-8"))
         name = claude.get("name")
+        if claude.get("license") != REPO_LICENSE:
+            problems.append(f"{plugin_dir.name}: license must be {REPO_LICENSE} (see LICENSE)")
         if name != plugin_dir.name:
             problems.append(f"{plugin_dir.name}: plugin name {name!r} does not match its folder")
 
@@ -134,6 +138,8 @@ def main() -> int:
             if not SKILL_NAME.match(skill_name) or len(skill_name) > 64:
                 problems.append(f"{name}: skill {folder}: invalid name {skill_name!r}")
             description = fm.get("description", "")
+            if fm.get("license", REPO_LICENSE) != REPO_LICENSE:
+                problems.append(f"{name}: skill {folder}: license must be {REPO_LICENSE}")
             if not 1 <= len(description) <= 1024:
                 problems.append(f"{name}: skill {folder}: description must be 1-1024 characters")
 

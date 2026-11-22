@@ -1,7 +1,7 @@
 ---
 name: aaronyang-gmail-triage
 description: Review the Gmail inbox and sort what is there into mail that needs the user's attention, senders that deserve a filter, and documents that belong in the PDF archive. Use when the user asks what in their inbox needs attention, which emails still need rules, which mail should be archived or collected, or for a periodic inbox check.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 compatibility: Needs read access to Gmail (a Gmail connector or the Gmail API).
 ---
 
