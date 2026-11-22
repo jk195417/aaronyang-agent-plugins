@@ -31,6 +31,11 @@
       "description": "File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests as the source of truth"
     },
     {
+      "name": "orchestrating",
+      "source": "./plugins/orchestrating",
+      "description": "Shape long agent work: one goal per session, where each piece runs, a visible detour stack, handoffs with provenance, and session close-out"
+    },
+    {
       "name": "reflection",
       "source": "./plugins/reflection",
       "description": "Capture lessons into a reflection queue as they happen and review them in batches, moving each to the place where it changes behavior"

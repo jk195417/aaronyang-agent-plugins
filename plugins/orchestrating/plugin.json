@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "orchestrating",
+  "version": "0.1.0",
+  "description": "Shape long agent work: one goal per session, where each piece runs, a visible detour stack, handoffs with provenance, and session close-out",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "orchestration",
+    "sessions",
+    "handoff",
+    "subagents",
+    "workflow"
+  ]
+}
