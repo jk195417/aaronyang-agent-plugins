@@ -1,7 +1,7 @@
 ---
 name: aaronyang-reflection
 description: Capture lessons and improvement ideas into the user's reflection queue as they happen, and periodically review the queue to decide where each lesson belongs — a rule with evals, a skill, a hook, a note, a life principle, or letting it go. Use when something went wrong or was learned during work, when the user says to remember a lesson or "記下來／反省", or asks to review, prioritize or clean up the reflection queue.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 ---
 
 # Reflection queue
