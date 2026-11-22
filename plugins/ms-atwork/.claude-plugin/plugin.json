@@ -1,6 +1,6 @@
 {
   "name": "ms-atwork",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Download every document and report from Morgan Stanley at Work into a local folder with a manifest; you sign in yourself",
   "author": {
     "name": "Aaron Yang"
