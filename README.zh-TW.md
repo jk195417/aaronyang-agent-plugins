@@ -82,6 +82,14 @@ claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
 
+merge 之後要在每台電腦手動更新；曾經發生 `autoUpdate` 沒更新本機的 marketplace 副本，導致新 plugin 一直沒裝上：
+
+```bash
+claude plugin marketplace update aaronyang-agent-plugins
+claude plugin update <plugin>@aaronyang-agent-plugins    # 每個有改的 plugin
+claude plugin install <plugin>@aaronyang-agent-plugins   # 每個新的 plugin
+```
+
 ## 授權
 
 [CC BY-SA 4.0](LICENSE) © Aaron Yang。可以自由使用、分享、改作，包括商用；條件是標出作者 Aaron Yang，改作也要用相同授權分享。

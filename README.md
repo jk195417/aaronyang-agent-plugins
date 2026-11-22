@@ -82,6 +82,14 @@ claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
 
+After merging, refresh each machine yourself; `autoUpdate` has been seen to leave the local marketplace clone on an old commit, so new plugins never install:
+
+```bash
+claude plugin marketplace update aaronyang-agent-plugins
+claude plugin update <plugin>@aaronyang-agent-plugins    # each changed plugin
+claude plugin install <plugin>@aaronyang-agent-plugins   # each new plugin
+```
+
 ## License
 
 [CC BY-SA 4.0](LICENSE) © Aaron Yang. Use, share, and adapt freely, including commercially: credit Aaron Yang and share adaptations under the same license.
