@@ -29,6 +29,11 @@
       "name": "file-archiving",
       "source": "./plugins/file-archiving",
       "description": "File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests as the source of truth"
+    },
+    {
+      "name": "reflection",
+      "source": "./plugins/reflection",
+      "description": "Capture lessons into a reflection queue as they happen and review them in batches, moving each to the place where it changes behavior"
     }
   ]
 }
