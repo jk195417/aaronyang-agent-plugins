@@ -39,6 +39,11 @@
       "name": "reflection",
       "source": "./plugins/reflection",
       "description": "Capture lessons into a reflection queue as they happen and review them in batches, moving each to the place where it changes behavior"
+    },
+    {
+      "name": "ms-atwork",
+      "source": "./plugins/ms-atwork",
+      "description": "Download every document and report from Morgan Stanley at Work into a local folder with a manifest; you sign in yourself"
     }
   ]
 }
