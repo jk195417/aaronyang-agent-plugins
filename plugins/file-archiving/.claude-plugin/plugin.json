@@ -1,0 +1,11 @@
+{
+  "name": "file-archiving",
+  "version": "0.1.0",
+  "description": "File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests as the source of truth",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "license": "CC-BY-SA-4.0",
+  "keywords": ["files", "archive", "para", "organize", "manifest"]
+}

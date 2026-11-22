@@ -24,6 +24,11 @@
       "name": "gmail-tools",
       "source": "./plugins/gmail-tools",
       "description": "Gmail as code: archive statement and receipt PDFs by month, manage filters from a TOML file with lint and backfill, and triage the inbox"
+    },
+    {
+      "name": "file-archiving",
+      "source": "./plugins/file-archiving",
+      "description": "File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests as the source of truth"
     }
   ]
 }
