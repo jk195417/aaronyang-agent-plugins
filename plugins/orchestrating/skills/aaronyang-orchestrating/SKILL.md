@@ -1,7 +1,7 @@
 ---
 name: aaronyang-orchestrating
 description: Shape long or multi-part agent work — scope one goal per session, decide what to run here, in a subagent or in a separate session, keep a visible stack of detours, hand work off with provenance, and close a session out (recap, save knowledge, check loose ends, archive). Use when a request has several independent parts, a conversation drifts to a new topic, the user asks to split, hand off, recap, wrap up or archive a session, or asks "what next" after a long stretch of work.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 ---
 
 # Orchestrating agent work
