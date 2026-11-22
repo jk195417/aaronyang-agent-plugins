@@ -1,7 +1,7 @@
 ---
 name: aaronyang-gmail-filters
 description: Manage Gmail filters as code — export existing filters to filters.toml, design new rules, preview and lint the diff, apply it with backfill to existing mail, and audit recent mail for over-archiving. Use when the user wants new Gmail filters or labels, wants to change or clean up filters, asks which senders need rules, or suspects mail is being archived wrongly.
-license: CC-BY-SA-4.0
+license: Apache-2.0
 compatibility: Needs uv and a Google Cloud OAuth client (Desktop app) with the Gmail API enabled.
 ---
 
