@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ms-atwork",
+  "version": "0.1.0",
+  "description": "Download every document and report from Morgan Stanley at Work into a local folder with a manifest; you sign in yourself",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "morgan-stanley",
+    "equity-compensation",
+    "rsu",
+    "espp",
+    "documents"
+  ]
+}

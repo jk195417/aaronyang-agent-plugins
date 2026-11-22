@@ -1,0 +1,18 @@
+{
+  "name": "ms-atwork",
+  "version": "0.1.0",
+  "description": "Download every document and report from Morgan Stanley at Work into a local folder with a manifest; you sign in yourself",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "license": "Apache-2.0",
+  "keywords": ["morgan-stanley", "equity-compensation", "rsu", "espp", "documents"],
+  "userConfig": {
+    "home": {
+      "type": "directory",
+      "title": "ms-atwork home folder",
+      "description": "Folder for .env (MS_OUTPUT_DIR) and reports.toml. Leave empty to use $MS_ATWORK_HOME or ~/.config/ms-atwork."
+    }
+  }
+}

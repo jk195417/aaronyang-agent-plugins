@@ -1,0 +1,18 @@
+# Copy this file to reports.toml and edit it. reports.toml is not committed.
+#
+# name  Used in file names.
+# id    The last part of the report URL, on the Reports page:
+#       /solium/servlet/ui/activity/reports/<id>
+# Account Summary is always included and needs no entry here.
+
+[[reports]]
+name = "Participant ESPP Purchase Report"
+id = "000000000000"
+
+[[reports]]
+name = "RSU Release Summary"
+id = "000000000000"
+
+[[reports]]
+name = "Share Sale Cost Basis Report"
+id = "000000000000"

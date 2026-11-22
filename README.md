@@ -14,6 +14,7 @@ Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Cop
 | `file-archiving` | `aaronyang-file-archiving` | File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests. Your own folder map stays in that folder's AGENTS.md |
 | `orchestrating` | `aaronyang-orchestrating` | Shape long agent work: one goal per session, here vs. subagent vs. separate session, a visible detour stack, handoff briefs with provenance, and session close-out |
 | `reflection` | `aaronyang-reflection` | Capture lessons as After Action Reviews into your reflection queue, then review in batches: prioritize (impact, cost, aging) and move each lesson to a rule, skill, hook, note or principle. Uses `writing-rules` and `knowledge-notes` when installed |
+| `ms-atwork` | `aaronyang-ms-atwork-download` | Download every document and report from Morgan Stanley at Work (statements, confirmations, tax forms, RSU/ESPP reports, grant details) with a manifest. Windows + Edge; you sign in yourself |
 | `knowledge-notes` | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
 
 Install only what you need; each plugin works on its own. `knowledge-notes` uses `plain-explain` when it is installed and falls back to a built-in format when it is not.
