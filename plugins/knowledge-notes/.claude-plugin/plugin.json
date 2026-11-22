@@ -1,6 +1,6 @@
 {
   "name": "knowledge-notes",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Ingest knowledge into your own knowledge base by following its existing structure",
   "author": {
     "name": "Aaron Yang"

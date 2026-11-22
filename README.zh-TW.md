@@ -44,6 +44,10 @@ copilot plugin install writing-rules@aaronyang-agent-plugins
 
 在 `settings.json` 的 `chat.plugins.marketplaces` 加入 `jk195417/aaronyang-agent-plugins`，再從 Extensions → Agent Plugins 安裝。
 
+### 其他支援 Agent Plugins 的工具（Codex、Cursor 等）
+
+每個 plugin 資料夾的根目錄另有一份符合 [Agent Plugins 1.0](https://agent-plugins.org/specification) 的 `plugin.json`。照各工具安裝 Agent Plugins 的方式，安裝 `plugins/<plugin>` 資料夾即可。Skill 採用 [Agent Skills](https://agentskills.io/specification) 格式，只讀 skill 的工具可以直接使用 `plugins/<plugin>/skills/` 底下的資料夾。
+
 ### claude.ai
 
 把 `plugins/<plugin>/skills/` 底下的 skill 資料夾壓縮後，上傳到 claude.ai 的 skills 設定。
@@ -66,7 +70,11 @@ git clone https://github.com/jk195417/aaronyang-agent-plugins ~/code/aaronyang-a
 
 ## 開發
 
+`plugins/<plugin>/.claude-plugin/plugin.json` 是正本，根目錄的 `plugin.json` 由它產生。只改 Claude Code 的 manifest，再執行同步腳本；腳本也會檢查 marketplace 的描述和 skill 名稱。
+
 ```bash
+uv run tools/sync_manifests.py          # 重新產生後檢查
+uv run tools/sync_manifests.py --check  # 只檢查，有問題時以代碼 1 結束
 claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
