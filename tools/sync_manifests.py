@@ -9,6 +9,10 @@ Derived:            plugins/<name>/plugin.json (https://agent-plugins.org)
 
   uv run tools/sync_manifests.py           write derived files, then check
   uv run tools/sync_manifests.py --check   change nothing; exit 1 on any problem (for CI)
+  uv run tools/sync_manifests.py --root ../other-marketplace   run on another marketplace repo
+
+The required license comes from the repo's LICENSE file (Apache-2.0 is recognized); a repo
+without LICENSE has no license requirement; --license SPDX-ID overrides the detection.
 
 Checks: derived manifests are up to date and valid against the Agent Plugins schema,
 every plugin is listed in .claude-plugin/marketplace.json with the same description,
@@ -24,11 +28,14 @@ import sys
 import urllib.request
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-PLUGINS = ROOT / "plugins"
-MARKETPLACE = ROOT / ".claude-plugin" / "marketplace.json"
+# Set in main() from --root (default: the repo this script lives in).
+ROOT: Path
+PLUGINS: Path
+MARKETPLACE: Path
+REPO_LICENSE: str | None  # SPDX id every plugin and skill must declare; None = no requirement
 SCHEMA_URL = "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json"
-REPO_LICENSE = "Apache-2.0"  # SPDX id of LICENSE; every plugin and skill must declare it
+# First-line fingerprints of license texts this script can recognize.
+KNOWN_LICENSES = {"Apache-2.0": ("Apache License", "Version 2.0")}
 # Keys Agent Plugins 1.0 allows besides $schema; Claude-only keys are dropped.
 PORTABLE_KEYS = ["name", "version", "description", "author", "homepage", "repository", "license", "keywords"]
 AUTHOR_KEYS = ["name", "email", "url"]
@@ -73,11 +80,31 @@ def frontmatter(path: Path) -> dict:
     return fields
 
 
+def detect_license(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    head = " ".join(path.read_text(encoding="utf-8", errors="replace").split()[:40])
+    for spdx, marks in KNOWN_LICENSES.items():
+        if all(mark in head for mark in marks):
+            return spdx
+    sys.exit(f"Cannot tell which license {path} is; pass --license SPDX-ID")
+
+
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--check", action="store_true", help="only check; exit 1 on any problem")
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent.parent,
+                        help="marketplace repo to work on (default: this repo)")
+    parser.add_argument("--license", help="SPDX id to require instead of detecting it from LICENSE")
     args = parser.parse_args()
+
+    global ROOT, PLUGINS, MARKETPLACE, REPO_LICENSE
+    ROOT = args.root.resolve()
+    PLUGINS = ROOT / "plugins"
+    MARKETPLACE = ROOT / ".claude-plugin" / "marketplace.json"
+    REPO_LICENSE = args.license or detect_license(ROOT / "LICENSE")
+    print(f"repo {ROOT.name}; required license: {REPO_LICENSE or 'none'}")
 
     problems: list[str] = []
     schema = load_schema()
@@ -96,7 +123,7 @@ def main() -> int:
             continue
         claude = json.loads(source.read_text(encoding="utf-8"))
         name = claude.get("name")
-        if claude.get("license") != REPO_LICENSE:
+        if REPO_LICENSE and claude.get("license") != REPO_LICENSE:
             problems.append(f"{plugin_dir.name}: license must be {REPO_LICENSE} (see LICENSE)")
         if name != plugin_dir.name:
             problems.append(f"{plugin_dir.name}: plugin name {name!r} does not match its folder")
@@ -138,7 +165,7 @@ def main() -> int:
             if not SKILL_NAME.match(skill_name) or len(skill_name) > 64:
                 problems.append(f"{name}: skill {folder}: invalid name {skill_name!r}")
             description = fm.get("description", "")
-            if fm.get("license", REPO_LICENSE) != REPO_LICENSE:
+            if REPO_LICENSE and fm.get("license", REPO_LICENSE) != REPO_LICENSE:
                 problems.append(f"{name}: skill {folder}: license must be {REPO_LICENSE}")
             if not 1 <= len(description) <= 1024:
                 problems.append(f"{name}: skill {folder}: description must be 1-1024 characters")
