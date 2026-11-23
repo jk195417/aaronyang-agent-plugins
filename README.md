@@ -29,7 +29,15 @@ Planned plugins are tracked as [issues labeled `roadmap`](https://github.com/jk1
 
 ## Install
 
-### Claude Code
+### claude.ai (recommended; Claude Code syncs it)
+
+1. In claude.ai, go to Customize → Plugins → Add → Add marketplace → from a repository, and enter `jk195417/aaronyang-agent-plugins`.
+2. Turn on Sync automatically. Automatic sync needs the Claude GitHub App to have access to this repo; when prompted, grant access and select only the repos you need.
+3. In the marketplace list, add each plugin you want.
+
+Claude Code on Windows and Mac (desktop app and terminal, v2.1.273 or later, signed in with a claude.ai account) syncs your account's plugins at each start; right after installing, it can take two starts to show up. Claude Code in WSL, or signed in with an API key or Bedrock, does not sync: use the CLI below there, and never install the same plugin both ways, or its skills appear twice.
+
+### Claude Code (CLI)
 
 ```bash
 claude plugin marketplace add jk195417/aaronyang-agent-plugins
@@ -53,9 +61,22 @@ Add `jk195417/aaronyang-agent-plugins` to `chat.plugins.marketplaces` in `settin
 
 Each plugin folder also has a root `plugin.json` that follows [Agent Plugins 1.0](https://agent-plugins.org/specification). Install a plugin folder (`plugins/<plugin>`) the way your client installs Agent Plugins. Skills follow the [Agent Skills](https://agentskills.io/specification) format, so clients that only read skills can use the folders under `plugins/<plugin>/skills/` directly.
 
-### claude.ai
+### A single skill only
 
-Zip a skill folder under `plugins/<plugin>/skills/` and upload it in claude.ai's skills settings.
+Without adding the marketplace, zip a skill folder under `plugins/<plugin>/skills/` and upload it in claude.ai's skills settings; it will not update by itself.
+
+## Setup
+
+Plugins hold only the method and the code. Your settings and data live outside the plugin, so updates never overwrite them. On first use, Claude follows the skill to ask where they go and helps you create them.
+
+| Plugin | What to set | Where |
+|---|---|---|
+| `knowledge-work` | Where your knowledge base and reflection queue are (for example Notion databases) | Your own `~/.claude/CLAUDE.md`, for example "Knowledge base: the Notion page *Knowledge*" and "Reflection queue: the Notion database *Reflection queue*" |
+| `gmail-tools` | A Google Cloud OAuth client, the senders to collect, PDF passwords, the export folder | A home folder: the plugin's `home` setting, or `GMAIL_TOOLS_HOME`, default `~/.config/gmail-tools`. OAuth steps: [setup.md](plugins/gmail-tools/skills/aaronyang-gmail-pdf-archive/references/setup.md). Type passwords into `.env` yourself |
+| `ms-atwork` | Where documents go (`MS_OUTPUT_DIR` in `.env`) and which reports to fetch (`reports.toml`) | A home folder: the plugin's `home` setting, or `MS_ATWORK_HOME`, default `~/.config/ms-atwork`. Windows and Edge only; the site's UI language must be English; you sign in yourself |
+| `file-archiving` | Your folder map and naming format | `AGENTS.md` or `CLAUDE.md` in the folder being organized |
+
+To set an environment variable: on Windows, `setx GMAIL_TOOLS_HOME "D:\path"` (takes effect in a new terminal); on Mac, add `export GMAIL_TOOLS_HOME="$HOME/path"` to `~/.zshrc`. Keep home folders out of cloud-synced folders, since they hold tokens and passwords.
 
 ## Shared principles
 
@@ -85,7 +106,9 @@ claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
 
-After merging, refresh each machine yourself; `autoUpdate` has been seen to leave the local marketplace clone on an old commit, so new plugins never install:
+When a plugin's content changes, bump its `version`. After merging, plugins installed from claude.ai sync by themselves and a restart of Claude Code picks up the new version; if not, open claude.ai Plugins → Add → Manage marketplaces and choose Check for updates on this marketplace. A new plugin has to be added in claude.ai once.
+
+CLI installs (for example in WSL) need a manual refresh; `autoUpdate` has been seen to leave the local marketplace clone on an old commit:
 
 ```bash
 claude plugin marketplace update aaronyang-agent-plugins

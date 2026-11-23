@@ -29,7 +29,15 @@ Skill 名稱都加上 `aaronyang-` 前綴，因為個人 skill 資料夾、claud
 
 ## 安裝
 
-### Claude Code
+### claude.ai（建議；Claude Code 也會同步）
+
+1. claude.ai → 自訂 → 外掛程式 → 新增 → 新增市集 → 從存放庫新增，填 `jk195417/aaronyang-agent-plugins`。
+2. 開啟「自動同步」。要自動同步，GitHub 上的 Claude GitHub App 要能存取這個 repo；畫面提示時按「授予存取權」，只勾需要的 repo 即可。
+3. 在市集清單裡把要用的 plugin 逐個按「新增」。
+
+Windows、Mac 的 Claude Code（桌面 app 與終端機，v2.1.273 以上、用 claude.ai 帳號登入）每次啟動時會同步帳號裡的 plugin；剛裝好時可能要啟動兩次才看得到。WSL、用 API key 或 Bedrock 登入的 Claude Code 不會同步，改用下面的 CLI 安裝，兩種不要同時裝同一個 plugin，以免 skill 出現兩次。
+
+### Claude Code（CLI）
 
 ```bash
 claude plugin marketplace add jk195417/aaronyang-agent-plugins
@@ -53,9 +61,22 @@ copilot plugin install knowledge-work@aaronyang-agent-plugins
 
 每個 plugin 資料夾的根目錄另有一份符合 [Agent Plugins 1.0](https://agent-plugins.org/specification) 的 `plugin.json`。照各工具安裝 Agent Plugins 的方式，安裝 `plugins/<plugin>` 資料夾即可。Skill 採用 [Agent Skills](https://agentskills.io/specification) 格式，只讀 skill 的工具可以直接使用 `plugins/<plugin>/skills/` 底下的資料夾。
 
-### claude.ai
+### 只上傳單一 skill
 
-把 `plugins/<plugin>/skills/` 底下的 skill 資料夾壓縮後，上傳到 claude.ai 的 skills 設定。
+不想加整個市集時，把 `plugins/<plugin>/skills/` 底下的 skill 資料夾壓縮後，上傳到 claude.ai 的 skills 設定；之後不會自動更新。
+
+## 設定
+
+Plugin 只有方法和程式；個人設定與資料都放在 plugin 以外，所以更新 plugin 不會蓋掉它們。第一次使用時，Claude 會照 skill 的說明問你位置並帶你建立。
+
+| Plugin | 要設定什麼 | 放在哪 |
+|---|---|---|
+| `knowledge-work` | 知識庫與反省佇列在哪（例如 Notion 的資料庫） | 自己的 `~/.claude/CLAUDE.md`，例如「知識庫在 Notion『知識庫』頁」「反省佇列：Notion『反省佇列』資料庫」 |
+| `gmail-tools` | Google Cloud OAuth 用戶端、要抓的寄件人、PDF 密碼、匯出位置 | home 資料夾：plugin 設定 `home`，或環境變數 `GMAIL_TOOLS_HOME`，預設 `~/.config/gmail-tools`。OAuth 申請步驟見 [setup.md](plugins/gmail-tools/skills/aaronyang-gmail-pdf-archive/references/setup.md)；密碼自己填進 `.env` |
+| `ms-atwork` | 文件下載到哪（`.env` 的 `MS_OUTPUT_DIR`）、要抓的報表（`reports.toml`） | home 資料夾：plugin 設定 `home`，或 `MS_ATWORK_HOME`，預設 `~/.config/ms-atwork`。只支援 Windows＋Edge；網站介面語言要是英文；登入由你自己完成 |
+| `file-archiving` | 你的資料夾地圖、命名格式 | 要整理的資料夾裡的 `AGENTS.md` 或 `CLAUDE.md` |
+
+設定環境變數：Windows 用 `setx GMAIL_TOOLS_HOME "D:\path"`（開新的終端機才生效）；Mac 在 `~/.zshrc` 加 `export GMAIL_TOOLS_HOME="$HOME/path"`。home 資料夾不要放在雲端同步資料夾裡（裡面有 token 與密碼）。
 
 ## 共用工作原則
 
@@ -85,7 +106,9 @@ claude plugin validate .
 for p in plugins/*; do claude plugin validate "$p"; done
 ```
 
-merge 之後要在每台電腦手動更新；曾經發生 `autoUpdate` 沒更新本機的 marketplace 副本，導致新 plugin 一直沒裝上：
+改了 plugin 內容要升 `version`。merge 之後，從 claude.ai 安裝的會自動同步，重開 Claude Code 就是新版；沒更新的話，到 claude.ai 外掛程式 → 新增 → 管理市集，對這個市集按「檢查更新」。新增的 plugin 要在 claude.ai 另外按「新增」。
+
+用 CLI 安裝的（例如 WSL）要手動更新；`autoUpdate` 曾經沒更新本機的 marketplace 副本：
 
 ```bash
 claude plugin marketplace update aaronyang-agent-plugins
