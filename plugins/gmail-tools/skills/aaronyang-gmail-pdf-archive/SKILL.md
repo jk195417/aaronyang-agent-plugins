@@ -25,7 +25,7 @@ First-time setup (OAuth client, file formats): [references/setup.md](references/
 
 1. `uv run scripts/download_pdfs.py --month YYYY-MM --dry-run` and show the user what will be downloaded.
 2. `uv run scripts/download_pdfs.py --month YYYY-MM`
-3. `uv run scripts/decrypt_pdfs.py --month YYYY-MM` (copies to `EXPORT_PATH/YYYY-MM` when set, with `manifest.csv` beside it).
+3. `uv run scripts/decrypt_pdfs.py --month YYYY-MM` (copies to `EXPORT_PATH/YYYY-MM` when set, with `manifest.csv` and `targets.csv` in `EXPORT_PATH`).
 4. Report downloaded, skipped and failed counts. A wrong or missing password is the user's to fix in `.env`.
 
 Both scripts are idempotent; rerun them to backfill.
@@ -37,5 +37,6 @@ Find real examples in Gmail first and use the exact sender address, plus a subje
 ## Archive rules
 
 - `manifest.csv` is the source of truth; any index for people is generated from it, never edited by hand.
+- Other tools read the exported `manifest.csv` and `targets.csv` (`name,status`: `active`, or `retired` for an entry commented out of `targets.toml`), never the home folder.
 - Exported files are original evidence: never rename, move or edit them. Classify through the manifest, not by moving files into folders (the next run would export them again).
 - Deleting an archived file means removing it from the export, `data/` and the manifest together; ask first.
