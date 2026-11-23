@@ -25,7 +25,7 @@ description: Write, review, or relocate agent instructions — CLAUDE.md, AGENTS
 | Memory | Index always; entries on demand | Facts learned along the way | Is it a fact rather than an instruction? |
 | Knowledge base (Notion, docs) | When looked up | Knowledge written for people | Is it mainly for humans to read? |
 
-Scope follows audience: personal (user level), team (repo level, shared through git), wider (plugin through a marketplace).
+Scope follows audience: personal (user level), team (repo level, shared through git), wider (plugin through a marketplace). Put skills in one plugin when they are installed and changed together; split them when setup, platform or audience differ.
 
 When a plugin's content changes, bump its `version` in `plugin.json`: installs are pinned to the version, so an unchanged version never reaches people who already installed it. Once a skill ships in a plugin, remove any local copy of it (single source of truth).
 
@@ -34,6 +34,7 @@ When a plugin's content changes, bump its `version` in `plugin.json`: installs a
 1. Name the behavior gap: what goes wrong today without the rule? No gap, no rule.
 2. Search existing instruction files and memories for overlap; update the existing line instead of adding a new one.
 3. Draft the smallest change, one line where possible, and show it to the user before writing.
+   When the guidance is a skill, draft it with skill-creator and keep this skill's principles (lean, positive, pointers). A skill's description may be pushy about when to trigger; keep the body lean.
 4. Keep shared method and personal configuration apart: the method goes in shared files, the user's own paths, accounts, and preferences stay in the user's own file.
 
 ## Verifying a rule (evals)
@@ -46,4 +47,4 @@ Run the same fixed tasks with and without the rule, several times each (ablation
 | Fails even with the rule | The rule does not work | Rewrite it, or move it to a hook |
 | Other checks get worse | The rule interferes with others | Catch it with regression tasks |
 
-Tools: `claude plugin eval`, Microsoft Vally, ablate, promptfoo.
+For a skill, run the test loop and description optimization with the skill-creator skill when it is installed; this table still decides what to do with the result.

@@ -8,22 +8,24 @@ Aaron Yang's agent plugins. One marketplace that both Claude Code and GitHub Cop
 
 | Plugin | Skill | What it does |
 |---|---|---|
-| `writing-rules` | `aaronyang-writing-rules` | Write lean agent instructions that change behavior, decide where each rule belongs, verify rules with evals |
-| `plain-explain` | `aaronyang-plain-explain` | Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references |
+| `knowledge-work` | `aaronyang-writing-rules` | Write lean agent instructions that change behavior, decide where each rule belongs, verify rules with evals |
+| | `aaronyang-plain-explain` | Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references |
+| | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
+| | `aaronyang-reflection` | Capture lessons as After Action Reviews into your reflection queue, then review in batches: prioritize (impact, cost, aging) and move each lesson to a rule, skill, hook, note or principle |
+| | `aaronyang-orchestrating` | Shape long agent work: one goal per session, here vs. subagent vs. separate session, a visible detour stack, handoff briefs with provenance, and session close-out |
 | `gmail-tools` | `aaronyang-gmail-pdf-archive`, `aaronyang-gmail-filters`, `aaronyang-gmail-triage` | Archive statement and receipt PDFs from Gmail by month; manage Gmail filters from a TOML file with lint, backfill and audit; triage the inbox. Personal settings and data stay in a home folder outside the plugin |
 | `file-archiving` | `aaronyang-file-archiving` | File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests. Your own folder map stays in that folder's AGENTS.md |
-| `orchestrating` | `aaronyang-orchestrating` | Shape long agent work: one goal per session, here vs. subagent vs. separate session, a visible detour stack, handoff briefs with provenance, and session close-out |
-| `reflection` | `aaronyang-reflection` | Capture lessons as After Action Reviews into your reflection queue, then review in batches: prioritize (impact, cost, aging) and move each lesson to a rule, skill, hook, note or principle. Uses `writing-rules` and `knowledge-notes` when installed |
 | `ms-atwork` | `aaronyang-ms-atwork-download` | Download every document and report from Morgan Stanley at Work (statements, confirmations, tax forms, RSU/ESPP reports, grant details) with a manifest. Windows + Edge; you sign in yourself |
-| `knowledge-notes` | `aaronyang-knowledge-notes` | Ingest knowledge into your own knowledge base by following its existing structure |
 
-Install only what you need; each plugin works on its own. `knowledge-notes` uses `plain-explain` when it is installed and falls back to a built-in format when it is not.
+A plugin holds skills that are installed and changed together: `knowledge-work` is one working method that every machine uses, while each tool plugin has its own setup, platform and audience. Install only what you need; each plugin works on its own. Skills inside `knowledge-work` use each other when present, so a single skill folder copied elsewhere still works on its own.
+
+Before 2026-11-23, the five `knowledge-work` skills shipped as separate plugins (`writing-rules`, `plain-explain`, `knowledge-notes`, `reflection`, `orchestrating`). To upgrade, install `knowledge-work` and uninstall those five, so that no skill is listed twice.
 
 Skill names carry the `aaronyang-` prefix because personal skill folders, claude.ai, and Copilot do not namespace skills, and two skills with the same name can shadow each other.
 
 ## Roadmap
 
-Planned plugins are tracked as [issues labeled `roadmap`](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap), starting with an orchestrating plugin.
+Planned plugins are tracked as [issues labeled `roadmap`](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap).
 
 ## Install
 
@@ -31,9 +33,7 @@ Planned plugins are tracked as [issues labeled `roadmap`](https://github.com/jk1
 
 ```bash
 claude plugin marketplace add jk195417/aaronyang-agent-plugins
-claude plugin install writing-rules@aaronyang-agent-plugins
-claude plugin install plain-explain@aaronyang-agent-plugins
-claude plugin install knowledge-notes@aaronyang-agent-plugins
+claude plugin install knowledge-work@aaronyang-agent-plugins
 ```
 
 ### GitHub Copilot CLI
@@ -42,7 +42,7 @@ Copilot CLI also reads `.claude-plugin/marketplace.json`.
 
 ```bash
 copilot plugin marketplace add jk195417/aaronyang-agent-plugins
-copilot plugin install writing-rules@aaronyang-agent-plugins
+copilot plugin install knowledge-work@aaronyang-agent-plugins
 ```
 
 ### VS Code (Copilot agent plugins, preview)

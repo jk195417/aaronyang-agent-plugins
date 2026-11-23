@@ -6,19 +6,9 @@
   },
   "plugins": [
     {
-      "name": "writing-rules",
-      "source": "./plugins/writing-rules",
-      "description": "Write lean agent instructions that change behavior, place each rule where it belongs, and verify rules with evals"
-    },
-    {
-      "name": "plain-explain",
-      "source": "./plugins/plain-explain",
-      "description": "Explain ideas to non-specialists: term, plain explanation, everyday analogy, numbered references"
-    },
-    {
-      "name": "knowledge-notes",
-      "source": "./plugins/knowledge-notes",
-      "description": "Ingest knowledge into your own knowledge base by following its existing structure"
+      "name": "knowledge-work",
+      "source": "./plugins/knowledge-work",
+      "description": "A working method for knowledge work with agents: lean agent rules verified with evals, plain explanations, notes that follow your knowledge base, a reflection queue, and orchestrating long sessions"
     },
     {
       "name": "gmail-tools",
@@ -29,16 +19,6 @@
       "name": "file-archiving",
       "source": "./plugins/file-archiving",
       "description": "File personal documents safely: PARA structure, hash-verified moves, append-only evidence, yearly folders, manifests as the source of truth"
-    },
-    {
-      "name": "orchestrating",
-      "source": "./plugins/orchestrating",
-      "description": "Shape long agent work: one goal per session, where each piece runs, a visible detour stack, handoffs with provenance, and session close-out"
-    },
-    {
-      "name": "reflection",
-      "source": "./plugins/reflection",
-      "description": "Capture lessons into a reflection queue as they happen and review them in batches, moving each to the place where it changes behavior"
     },
     {
       "name": "ms-atwork",
