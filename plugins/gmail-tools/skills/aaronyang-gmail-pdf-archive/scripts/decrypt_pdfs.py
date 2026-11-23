@@ -8,7 +8,8 @@ Each file uses the password key its target names in targets.toml; the passwords
 live in <home>/.env and are never printed.
 
   uv run decrypt_pdfs.py --month 2026-09
-  uv run decrypt_pdfs.py --month 2026-09 --export-path "D:/backup/pdfs"   # also copy to PATH/YYYY-MM
+  uv run decrypt_pdfs.py --month 2026-09 --export-path "D:/backup/pdfs"   # also copy to PATH/YYYY-MM,
+                                                                         # with manifest.csv and targets.csv in PATH
   uv run decrypt_pdfs.py --month 2026-09 --delete-originals              # delete verified encrypted files
 """
 
@@ -23,7 +24,7 @@ from pathlib import Path
 import pikepdf
 from dotenv import load_dotenv
 
-from config import Target, load_targets
+from config import Target, load_targets, write_targets_csv
 from gmail_home import require_home
 from manifest import Manifest, sha256
 
@@ -164,9 +165,10 @@ def main() -> int:
             if (export_dir / f.name).exists():
                 manifest.update(f.name, month=args.month, exported_to=str(export_dir / f.name))
         manifest.save()
-        # Keep a copy of the manifest next to the export for indexes and other tools.
+        # Keep a copy of the manifest and the target list next to the export for indexes and other tools.
         if manifest_path.exists():
             shutil.copy2(manifest_path, export_root / "manifest.csv")
+        write_targets_csv(home, export_root / "targets.csv")
     manifest.save()
     return 1 if failed else 0
 

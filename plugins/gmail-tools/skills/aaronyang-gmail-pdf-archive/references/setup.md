@@ -41,6 +41,8 @@ Copy `assets/env.example` to `<home>/.env`. Key `CARD` reads `PDF_PASSWORD_CARD`
 | `decrypted_sha256`, `decrypted_at` | decrypt | Decrypted copy |
 | `exported_to` | decrypt | Exported copy, if any |
 
+With an export path, decrypt also writes `targets.csv` there: one row per target, `name,status`, where status is `active` or `retired` (an entry commented out of `targets.toml`). Indexes read it instead of `targets.toml`.
+
 ## Security
 
 - The home folder holds plain-text passwords and a token that reads the whole mailbox. Keep it out of synced or shared folders; revoke the token in your Google account if it leaks.

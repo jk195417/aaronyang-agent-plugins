@@ -6,6 +6,9 @@
 # password  Optional. KEY reads the password from PDF_PASSWORD_KEY in .env.
 #           Use a list, such as ["NEW", "OLD"], to try several in order.
 #           Leave it out for PDFs without a password.
+#
+# To stop fetching a sender but keep its archived files labeled, comment out its
+# entry. Exports list it as retired in targets.csv.
 
 [[targets]]
 name = "bank-a-card"

@@ -1,6 +1,6 @@
 {
   "name": "gmail-tools",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Gmail as code: archive statement and receipt PDFs by month, manage filters from a TOML file with lint and backfill, and triage the inbox",
   "author": {
     "name": "Aaron Yang"

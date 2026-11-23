@@ -47,3 +47,27 @@ def load_targets(home: Path) -> dict[str, Target]:
             sys.exit(f"Target {name}: password keys may contain only letters, digits and _")
         targets[name] = Target(name, sender, entry.get("subject", ""), passwords)
     return targets
+
+
+def target_statuses(home: Path) -> dict[str, str]:
+    """Name -> "active" for [[targets]] entries, "retired" for entries commented out (# name = "...")."""
+    text = (home / CONFIG_NAME).read_text(encoding="utf-8")
+    active = {entry.get("name", "") for entry in tomllib.loads(text).get("targets", [])} - {""}
+    retired = set(re.findall(r'^#\s*name\s*=\s*"([^"]+)"', text, re.M)) - active
+    return {name: "active" for name in active} | {name: "retired" for name in retired}
+
+
+def write_targets_csv(home: Path, path: Path) -> bool:
+    """Write name,status for every target so other tools need not read targets.toml.
+
+    The file is rewritten only when its content changes; returns whether it did.
+    """
+    statuses = target_statuses(home)
+    text = "name,status\n" + "".join(f"{name},{statuses[name]}\n" for name in sorted(statuses))
+    if path.exists() and path.read_text(encoding="utf-8") == text:
+        return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".csv.tmp")
+    tmp.write_text(text, encoding="utf-8", newline="\n")
+    tmp.replace(path)
+    return True
