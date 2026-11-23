@@ -61,10 +61,6 @@ copilot plugin install knowledge-work@aaronyang-agent-plugins
 
 每個 plugin 資料夾的根目錄另有一份符合 [Agent Plugins 1.0](https://agent-plugins.org/specification) 的 `plugin.json`。照各工具安裝 Agent Plugins 的方式，安裝 `plugins/<plugin>` 資料夾即可。Skill 採用 [Agent Skills](https://agentskills.io/specification) 格式，只讀 skill 的工具可以直接使用 `plugins/<plugin>/skills/` 底下的資料夾。
 
-### 只上傳單一 skill
-
-不想加整個市集時，把 `plugins/<plugin>/skills/` 底下的 skill 資料夾壓縮後，上傳到 claude.ai 的 skills 設定；之後不會自動更新。
-
 ## 設定
 
 Plugin 只有方法和程式；個人設定與資料都放在 plugin 以外，所以更新 plugin 不會蓋掉它們。第一次使用時，Claude 會照 skill 的說明問你位置並帶你建立。

@@ -61,10 +61,6 @@ Add `jk195417/aaronyang-agent-plugins` to `chat.plugins.marketplaces` in `settin
 
 Each plugin folder also has a root `plugin.json` that follows [Agent Plugins 1.0](https://agent-plugins.org/specification). Install a plugin folder (`plugins/<plugin>`) the way your client installs Agent Plugins. Skills follow the [Agent Skills](https://agentskills.io/specification) format, so clients that only read skills can use the folders under `plugins/<plugin>/skills/` directly.
 
-### A single skill only
-
-Without adding the marketplace, zip a skill folder under `plugins/<plugin>/skills/` and upload it in claude.ai's skills settings; it will not update by itself.
-
 ## Setup
 
 Plugins hold only the method and the code. Your settings and data live outside the plugin, so updates never overwrite them. On first use, Claude follows the skill to ask where they go and helps you create them.
