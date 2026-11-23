@@ -8,22 +8,24 @@ Aaron Yang 的 agent plugin。一個 marketplace，Claude Code 和 GitHub Copilo
 
 | Plugin | Skill | 用途 |
 |---|---|---|
-| `writing-rules` | `aaronyang-writing-rules` | 寫出精簡、真正改變行為的 agent 規則；判斷規則該放哪裡；用 evals 驗證 |
-| `plain-explain` | `aaronyang-plain-explain` | 把知識講給外行人聽懂：專有名詞、白話解釋、生活比喻、編號 References |
+| `knowledge-work` | `aaronyang-writing-rules` | 寫出精簡、真正改變行為的 agent 規則；判斷規則該放哪裡；用 evals 驗證 |
+| | `aaronyang-plain-explain` | 把知識講給外行人聽懂：專有名詞、白話解釋、生活比喻、編號 References |
+| | `aaronyang-knowledge-notes` | 把知識 ingest 進自己的知識庫，照各自現有的架構寫 |
+| | `aaronyang-reflection` | 用 AAR 四問把教訓記進反省佇列，再批次 review：依影響、成本、等待時間排序，把每個教訓放到規則、skill、hook、筆記或原則 |
+| | `aaronyang-orchestrating` | 安排長時間的 agent 工作：一個 session 一個目標、判斷在這裡做或交給 subagent 或另開 session、岔題時保留可見的 stack、附來源標記的交接、session 收尾 |
 | `gmail-tools` | `aaronyang-gmail-pdf-archive`、`aaronyang-gmail-filters`、`aaronyang-gmail-triage` | 從 Gmail 依月份歸檔對帳單、收據 PDF；用 TOML 檔管理 Gmail 篩選器（lint、套用到舊信、事後抽查）；巡檢收件匣。個人設定與資料放在 plugin 以外的 home 資料夾 |
 | `file-archiving` | `aaronyang-file-archiving` | 安全地歸檔個人文件：PARA 結構、比對雜湊再搬移、原始證據只增不改、年度資料夾、以 manifest 為正本。自己的資料夾地圖寫在該資料夾的 AGENTS.md |
-| `orchestrating` | `aaronyang-orchestrating` | 安排長時間的 agent 工作：一個 session 一個目標、判斷在這裡做或交給 subagent 或另開 session、岔題時保留可見的 stack、附來源標記的交接、session 收尾 |
-| `reflection` | `aaronyang-reflection` | 用 AAR 四問把教訓記進反省佇列，再批次 review：依影響、成本、等待時間排序，把每個教訓放到規則、skill、hook、筆記或原則。有裝 `writing-rules`、`knowledge-notes` 時會用它們 |
 | `ms-atwork` | `aaronyang-ms-atwork-download` | 下載 Morgan Stanley at Work 的所有文件與報表（對帳單、交易確認、稅表、RSU/ESPP 報表、授予明細）並產生 manifest。需 Windows 與 Edge，登入由你自己完成 |
-| `knowledge-notes` | `aaronyang-knowledge-notes` | 把知識 ingest 進自己的知識庫，照各自現有的架構寫 |
 
-需要哪個裝哪個，每個都能單獨使用。`knowledge-notes` 有裝 `plain-explain` 時會用它的格式，沒裝就用內建的精簡格式。
+一個 plugin 放會一起安裝、一起修改的 skill：`knowledge-work` 是每台機器都用的一套工作方法；工具類 plugin 各有自己的設定、平台與使用對象。需要哪個裝哪個，每個都能單獨使用。`knowledge-work` 裡的 skill 有對方就互相引用，所以單獨複製某個 skill 資料夾到別處也能用。
+
+2026-11-23 以前，`knowledge-work` 的五個 skill 是分開的 plugin（`writing-rules`、`plain-explain`、`knowledge-notes`、`reflection`、`orchestrating`）。升級時安裝 `knowledge-work`，再移除這五個，避免同一個 skill 出現兩次。
 
 Skill 名稱都加上 `aaronyang-` 前綴，因為個人 skill 資料夾、claude.ai、Copilot 不會替 skill 加命名空間，同名的 skill 可能互相覆蓋。
 
 ## Roadmap
 
-規劃中的 plugin 記在[標了 `roadmap` 的 issue](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap)，第一個是 orchestrating plugin。
+規劃中的 plugin 記在[標了 `roadmap` 的 issue](https://github.com/jk195417/aaronyang-agent-plugins/issues?q=label%3Aroadmap)。
 
 ## 安裝
 
@@ -31,9 +33,7 @@ Skill 名稱都加上 `aaronyang-` 前綴，因為個人 skill 資料夾、claud
 
 ```bash
 claude plugin marketplace add jk195417/aaronyang-agent-plugins
-claude plugin install writing-rules@aaronyang-agent-plugins
-claude plugin install plain-explain@aaronyang-agent-plugins
-claude plugin install knowledge-notes@aaronyang-agent-plugins
+claude plugin install knowledge-work@aaronyang-agent-plugins
 ```
 
 ### GitHub Copilot CLI
@@ -42,7 +42,7 @@ Copilot CLI 也會讀 `.claude-plugin/marketplace.json`。
 
 ```bash
 copilot plugin marketplace add jk195417/aaronyang-agent-plugins
-copilot plugin install writing-rules@aaronyang-agent-plugins
+copilot plugin install knowledge-work@aaronyang-agent-plugins
 ```
 
 ### VS Code（Copilot agent plugins，預覽功能）
