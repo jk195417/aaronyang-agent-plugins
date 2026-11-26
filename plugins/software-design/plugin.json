@@ -1,0 +1,21 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "software-design",
+  "version": "0.1.0",
+  "description": "Design and review systems with explicit trade-offs: boundaries and dependency direction, single source of truth, functional core, domain interfaces and contracts, restraint (KISS, YAGNI, DRY), patterns only when they fit, supply-chain-aware dependencies, and incremental migration",
+  "author": {
+    "name": "Aaron Yang"
+  },
+  "repository": "https://github.com/jk195417/aaronyang-agent-plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "software-design",
+    "architecture",
+    "refactoring",
+    "interfaces",
+    "design-patterns",
+    "solid",
+    "trade-offs",
+    "dependencies"
+  ]
+}
