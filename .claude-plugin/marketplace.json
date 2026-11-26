@@ -11,6 +11,11 @@
       "description": "A working method for knowledge work with agents: lean agent rules verified with evals, plain explanations, notes that follow your knowledge base, a reflection queue, and orchestrating long sessions"
     },
     {
+      "name": "software-design",
+      "source": "./plugins/software-design",
+      "description": "Design and review systems with explicit trade-offs: boundaries and dependency direction, single source of truth, functional core, domain interfaces and contracts, restraint (KISS, YAGNI, DRY), patterns only when they fit, supply-chain-aware dependencies, and incremental migration"
+    },
+    {
       "name": "gmail-tools",
       "source": "./plugins/gmail-tools",
       "description": "Gmail as code: archive statement and receipt PDFs by month, manage filters from a TOML file with lint and backfill, and triage the inbox"
