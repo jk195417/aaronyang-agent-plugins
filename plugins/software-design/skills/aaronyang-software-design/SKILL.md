@@ -24,11 +24,6 @@ Skip steps that do not apply; a naming question needs steps 1, 2 and 4, not all 
 
 ## Output
 
-For each decision:
-
-- the recommendation and its key reason, in one line
-- the alternative rejected and the trade-off that decided it
-- what would change the decision
-- each claim marked as observed in the code, from a reference, or inferred, and whether it is verified
+Lead with one table, one row per decision: recommendation, key reason, alternative rejected, and what would change it. Then expand only where the reader needs more. At the end, list once the claims that are inferred or unverified; do not label every line.
 
 Show the target structure as a tree or table before changing code, and change code only after the user agrees.
